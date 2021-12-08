@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ actor.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ actor.name }}</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('wild_all_actors') }}">Tous les acteurs</a>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('wild_index') }}">Accueil</a>
+        <div class="row">
+            <div class="col-md-4 image-container mb-3 actor-card">
+                <img src="{{ actor.image ?? asset('build/images/actor.6ddea756.png') }}"
+                     alt="{{ actor.name }}" class="image-shadow {{ actor.image is not defined ? "" : "card-img-actor-default" }}">
+            </div>
+            <div class="col-md-8">
+                <table class="table">
+                    <tbody class="table-actor">
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ actor.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Programme</td>
+                        <td>
+                            {% for program in actor.programs %}
+                                <a class="btn btn-custom-actor"
+                                   href="{{ path('wild_show', { 'slug': program.slug }) | lower }}">
+                                    {{ program.title }}
+                                </a>
+                            {% else %}
+                                <p>Aucun programme trouvé</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

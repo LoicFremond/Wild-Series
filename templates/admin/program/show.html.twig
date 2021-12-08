@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programmes | Admin{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Visualiser</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('program_index') }}">Retour à la liste</a>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <img src="{{ program.poster }}" alt="{{ program.title }}">
+                </td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ program.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ program.slug }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ program.category.name }}</td>
+            </tr>
+            <tr>
+                <th>Acteur</th>
+                <td>
+                    {% for actor in program.actors %}
+                       <p class="actor-wrapper">
+                           <span class="btn-custom">{{ actor.name }}</span>
+                       </p>
+                    {% else %}
+                        Aucun acteur trouvé
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Résumé</th>
+                <td>{{ program.summary }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-sm btn-success" href="{{ path('program_edit', {'id': program.id}) }}">Editer</a>
+
+        {{ include('admin/program/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episode{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('episode_index') }}">Retour à la liste</a>
+        <h1 class="my-4">{{ episode.title }}</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <img src="{{ episode.poster }}" alt="{{ episode.title }}">
+                </td>
+            </tr>
+            <tr>
+                <th>Programme</th>
+                <td>{{ episode.season.program.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ episode.slug }}</td>
+            </tr>
+            <tr>
+                <th>Saison</th>
+                <td>{{ episode.season.number }}</td>
+            </tr>
+            <tr>
+                <th>Episode</th>
+                <td>{{ episode.number }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ episode.synopsis }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-sm btn-success" href="{{ path('episode_edit', {'id': episode.id}) }}">Editer</a>
+
+        {{ include('admin/episode/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

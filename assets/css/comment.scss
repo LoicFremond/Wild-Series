@@ -1,0 +1,48 @@
+@import "vars";
+
+.comment {
+  width : 100%;
+
+  .comment-content {
+    width    : 100%;
+    position : relative;
+  }
+
+  .comment-image {
+    width         : 80px;
+    height        : 80px;
+    border-radius : $radius-round;
+    border        : 3px solid $dark;
+    margin-right  : $margin-sm;
+  }
+
+  .comment-body {
+    background-color : $color-dark;
+    color            : $color-light;
+    padding-left     : $margin;
+    padding-right    : $margin;
+    padding-top      : $margin;
+    margin-left      : $margin;
+    border-radius    : $radius-sm;
+
+    &:before {
+      content       : "";
+      position      : absolute;
+      display       : inline-block;
+      left          : 0;
+      top           : 25px;
+      border-top    : 12px solid transparent;
+      border-right  : 18px solid $color-dark;
+      border-bottom : 12px solid transparent;
+    }
+  }
+
+  .comment-footer {
+    font-style     : italic;
+    text-align     : right;
+    padding-top    : $margin-sm;
+    padding-bottom : $margin-sm;
+    margin-top     : $margin-lg;
+    border-top     : 1px inset $color-light;
+  }
+}

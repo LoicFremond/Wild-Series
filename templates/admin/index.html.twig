@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil | Administration{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Dashboard administration</h1>
+    </div>
+    <div class="container">
+        <div class="admin-home row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-md-3">
+            <div class="col col-12 mb-4">
+                <a href="{{ path('category_index') }}">
+                    <div class="card h-100">
+                        <i class="fas fa-tags"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Catégories</h5>
+                            <p class="card-text">Ajouter, modifer, gérer les catégories</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-12 mb-4">
+                <a href="{{ path('program_index') }}">
+                    <div class="card h-100">
+                        <i class="fas fa-film"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Programmes</h5>
+                            <p class="card-text">Ajouter, modifer, gérer contenus séries, films...</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-12 mb-4">
+                <a href="{{ path('episode_index') }}">
+                    <div class="card h-100">
+                        <i class="fas fa-video"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Episodes</h5>
+                            <p class="card-text">Ajouter, modifer, gérer contenus séries, films...</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-12 mb-4">
+                <a href="{{ path('season_index') }}">
+                    <div class="card h-100">
+                        <i class="fab fa-buffer"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Saisons</h5>
+                            <p class="card-text">Ajouter, modifer, gérer les saisons</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-12 mb-4">
+                <a href="{{ path('actor_index') }}">
+                    <div class="card h-100">
+                        <i class="fas fa-user"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Acteurs</h5>
+                            <p class="card-text">Ajouter, modifer, gérer les acteurs</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-12 mb-4">
+                <a href="{{ path('user_index') }}">
+                    <div class="card h-100">
+                        <i class="fas fa-users-cog"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Utilisateurs</h5>
+                            <p class="card-text">Ajouter, modifer, gérer les utilisateurs</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

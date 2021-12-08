@@ -1,0 +1,29 @@
+.toast {
+  position: absolute;
+  right: 50px;
+  top: 75px;
+  opacity: 1;
+  min-width: 275px;
+
+  img {
+    width: auto;
+  }
+
+  .toast-header {
+    padding: .5rem .75rem;
+  }
+
+  .delete, .denied {
+    background-color: $color-alert;
+    color: $color-light;
+  }
+
+  .update, .create {
+    background-color: $color-success;
+    color: $color-light;
+
+    .toast-body {
+      color: $color-success;
+    }
+  }
+}

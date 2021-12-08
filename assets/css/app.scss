@@ -1,0 +1,306 @@
+@import "reset";
+@import "vars";
+@import "glitch";
+
+$theme-colors : ("dark": $dark,
+  "secondary": $secondary,
+);
+
+@import "~bootstrap/scss/bootstrap";
+@import "media";
+@import "pagination";
+@import "flash";
+
+.btn-light {
+  font-size: 1rem;
+}
+body {
+  font-family: $ff-main;
+  background : linear-gradient(to bottom, $color-navbar, $color-grey),
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.logo {
+  width: 60px;
+}
+
+.homepage {
+  position: absolute;
+  z-index : -1;
+  width   : 30%;
+  left    : 40%;
+  right   : auto;
+}
+
+#main {
+  min-height: 100vh;
+}
+
+.container .select2-container--default .select2-selection--single {
+  min-height: 40px;
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+.dark {
+  background-color: $color-dark;
+}
+
+.btn-custom {
+  border       : 1px solid $dark;
+  padding      : $margin-sm / 2 $margin-sm;
+  border-radius: $border-radius;
+  margin-left  : $margin-sm;
+  margin-right : $margin-sm;
+}
+
+.btn-custom-actor {
+  border       : 1px solid $color-light;
+  padding      : $margin-sm / 2 $margin-sm;
+  border-radius: $border-radius;
+  margin-left  : $margin-sm;
+  margin-right : $margin-sm;
+  color: $color-light;
+}
+
+.navbar .dropdown-menu {
+  background-color: $color-dark;
+
+  &:target {
+    outline: none;
+  }
+
+  .dropdown-item {
+    color: $color-light;
+  }
+
+  .dropdown-menu:hover {
+    background-color: $color-light;
+  }
+
+  .dropdown-item:hover {
+    color: $color-dark;
+  }
+}
+
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar .navbar-brand {
+  color      : $color-light;
+  font-family: $ff-title;
+  transition : $effect-transition;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: $color-light-hover;
+}
+
+a,
+a:hover,
+.btn-link,
+.btn-link:hover,
+.btn-link:active,
+.btn-link:visited,
+.btn-link:target,
+.btn-link:focus {
+  text-decoration: none;
+  color          : inherit;
+}
+
+img {
+  width: 100%;
+}
+
+.card-body {
+  color: $dark;
+}
+
+.card-poster {
+  width: 100%;
+  border-radius: 10%;
+
+  .image {
+    height: 100%;
+  }
+
+  img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    border-radius: 10%;
+  }
+}
+
+.content-comment {
+  color: $dark;
+}
+
+.media img {
+  max-width: 400px;
+}
+
+.media .nav-link {
+  background-color: $color-main;
+  color           : $color-light;
+  display         : inline-block;
+  border-radius   : $border-radius;
+  margin          : $margin-sm;
+}
+
+.sidebar {
+  border-right    : 1px solid $color-main;
+  background-color: $color-dark;
+  color           : $color-light;
+  min-height      : 100vh;
+
+  hr {
+    background-color: $color-dark;
+    height          : 1px;
+    border          : none;
+    margin          : $margin-sm;
+    opacity         : .5;
+  }
+}
+
+.sidebar .nav-link {
+  padding: $margin-sm;
+}
+
+.active {
+  color           : $color-dark;
+  background-color: $color-light;
+}
+
+.media-body {
+  background-color: $color-light;
+  box-shadow      : 3px 3px 10px $color-light;
+  padding         : 1rem;
+  border-radius   : 5%;
+
+  .table td {
+    border: none;
+  }
+
+  table td:first-child {
+    min-width  : 120px;
+    font-weight: bold;
+  }
+}
+
+.list-episodes img {
+  height                    : 100%;
+  object-fit                : cover;
+  object-position           : top;
+  border-top-right-radius   : 0;
+  border-bottom-right-radius: 0;
+}
+
+.list-episodes .card {
+  min-width: 100%;
+}
+
+.admin-home .fas,
+.admin-home .fab {
+  padding-top: 25px;
+  text-align : center;
+  font-size  : 100px;
+}
+
+.table img {
+  max-width: 50px;
+}
+
+footer {
+  height          : 80px;
+  background-color: $color-navbar;
+}
+
+
+.image-container {
+  width : 100%;
+  height: auto;
+  padding: 0;
+
+}
+
+#img,
+.image-shadow,
+#avatar {
+  text-align       : center;
+  background-color : $color-grey;
+  display          : block;
+  height           : auto;
+  border-radius    : 5px;
+  min-height       : 200px;
+  box-shadow      : 3px 3px 10px $color-light;
+}
+
+.resp-show {
+  display: none;
+}
+
+textarea {
+  min-height: 140px;
+}
+
+.select2-selection select2-selection--single {
+  color: $dark !important;
+}
+
+.container .select2-container--default .select2-selection--single {
+  height: 100%;
+  color : $dark;
+
+  .select2-selection__rendered {
+    background-color: $color-light;
+    color           : $dark !important;
+    display         : inline-block;
+    margin          : 5px;
+    border-radius   : $border-radius;
+  }
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: $color-main !important;
+  color           : $color-grey !important;
+}
+
+h1 {
+  color: $color-light;
+}
+
+.table-actor {
+  color: $color-light;
+}
+
+.actor-card {
+  min-height      : 180px;
+
+  .card-actor {
+    height : auto;
+    display: inline-block;
+
+    .card-img-actor {
+      height    : 80%;
+      object-fit: cover;
+    }
+  }
+
+  .card-img-actor-default {
+    opacity: 100;
+  }
+}
+
+.actor-wrapper {
+  display: inline-block;
+}
+
+#user_roles {
+  color: transparent;
+}

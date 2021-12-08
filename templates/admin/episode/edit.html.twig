@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Episode{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modification Episode</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('episode_index') }}">Retour à le liste</a>
+
+        <div class="row">
+            <div class="col-md-4 image-container mb-3">
+                <img id="img" src="" alt="image non disponible">
+            </div>
+            <div class="col-md-8">
+                {{ include('admin/episode/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                {{ include('admin/episode/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

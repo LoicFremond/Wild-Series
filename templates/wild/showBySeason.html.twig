@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <a class="btn btn-sm btn-outline-light mb-5"
+           href="{{ path('wild_show', { 'slug': program.slug | lower }) }}">
+            Retour
+        </a>
+        <div class="media">
+            <img class="image-shadow align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <div class="media-detail">
+                <div class="media-body">
+                    <h2 class="mt-0">{{ program.title }}</h2>
+                    <p>{{ program.summary }}</p>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>Saison :</td>
+                            <td>{{ season.number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Episodes :</td>
+                            <td>{{ episodes | length }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sortie :</td>
+                            <td>{{ season.year }}</td>
+                        </tr>
+                        <tr>
+                            <td>Categorie :</td>
+                            <td>{{ program.category.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Acteurs :</td>
+                            <td>
+                                {% for actor in program.actors %}
+                                    <p class="actor-wrapper">
+                                        <a class="btn-custom"
+                                           href="{{ path('wild_actor',
+                                               {'slug': actor.slug | lower,
+                                               }) }}">
+                                            {{ actor.name }}
+                                        </a>
+                                    </p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="list-episodes mt-5">
+            {% for episode in episodes %}
+                <div class="card mb-3 actor-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 col-lg-2">
+                            <img src="{{ episode.poster ?? asset('build/images/movie.408ea2dd.png') }}"
+                                 class="card-img {{ episode.poster is not defined ? "" : "card-img-actor-default" }}"
+                                 alt="{{ episode.title }}">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ episode.title }}</h5>
+                                <p class="card-text">{{ episode.synopsis }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <span class="mx-2">Episode {{ episode.number }}</span>
+                                        <span class="mx-2"><i class="fas fa-comments"></i></span>
+
+                                    </small>
+                                </p>
+                                <div class="action text-right">
+                                    <a class="btn btn-sm btn-dark btn-sm"
+                                       href="{{ path('wild_show_episode',
+                                           { 'slug': program.slug | lower,
+                                               'episode': episode.slug,
+                                           }) }}">
+                                        Détail
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="navigation">
+                {{ knp_pagination_render(episodes) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

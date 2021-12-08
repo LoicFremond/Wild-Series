@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des acteurs{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des acteurs</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('admin') }}">Accueil admin</a>
+        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_new') }}">Nouvel acteur</a>
+
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th>Portrait</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for actor in actors %}
+                <tr>
+                    <td>
+                        <img src="{{ actor.image }}" alt="{{ actor.name }}">
+                    </td>
+                    <td>{{ actor.name }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_show', {'id': actor.id}) }}">Afficher</a>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_edit', {'id': actor.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Aucun acteur enregistré</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation my-5">
+            {{ knp_pagination_render(actors) }}
+        </div>
+    </div>
+{% endblock %}

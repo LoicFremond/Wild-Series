@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ episode.title }} - {{ program.title }}{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <a href="{{ path('wild_show_season',
+            { 'slug': program.slug | lower,
+                'id': season.id,
+                'number': season.number }) }}" class="btn btn-sm btn-outline-light mb-5">
+            Liste des épisodes
+        </a>
+        <a href="{{ path('wild_show', { 'slug': program.slug | lower }) }}" class="btn btn-sm btn-outline-light mb-5">
+            Accueil de la saison
+        </a>
+        <h1 class="mb-5">{{ episode.title }}</h1>
+        <div class="media">
+            <div class="row actor-card">
+                <div class="col col-12 col-md-5">
+                    {% if episode.poster %}
+                        <img class="align-self-start mr-3" src="{{ episode.poster }}" alt="{{ episode.title }}">
+                    {% else %}
+                        <img class="align-self-start mr-3 card-img-actor-default"
+                             src="{{ asset('build/images/movie.408ea2dd.png') }}" alt="{{ episode.title }}">
+                    {% endif %}
+                </div>
+                <div class="media-detail col col-12 col-md-7">
+                    <div class="media-body">
+                        <h3>{{ program.title }}</h3>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>Saison :</td>
+                                <td>{{ season.number }}</td>
+                            </tr>
+                            <tr>
+                                <td>Episode :</td>
+                                <td>{{ episode.number }}</td>
+                            </tr>
+                            <tr>
+                                <td>Sortie :</td>
+                                <td>{{ season.year }}</td>
+                            </tr>
+                            <tr>
+                                <td>Categorie :</td>
+                                <td>{{ program.category.name }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p>{{ episode.synopsis }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-comment my-5">
+            <h1>Commentaires</h1>
+            <div class="form-comment my-5">
+                {% if app.user %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <div class="text-right">
+                        <button class="btn btn-dark">Valider</button>
+                    </div>
+                    {{ form_end(form) }}
+                {% else %}
+                    <p>
+                        Vous devez être connecter pour laisser un commentaire
+                        <a class="btn btn-sm btn-dark ml-3" href="{{ path('app_login') }}">Se connecter</a>
+                    </p>
+                {% endif %}
+            </div>
+            <div class="comments-wrapper my-5">
+                {% for comment in comments %}
+                    <div class="comment d-flex mb-4">
+                        <div class="comment-image text-center">
+                            <figure>
+                                <img class="image-container" src="{{ asset('images/') ~ comment.author.avatar }}"
+                                     alt="{{ comment.author.username }}">
+                                <figcaption class="mt-2">
+                                    {{ comment.rate }}
+                                    <i class="fas fa-star"></i>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="comment-content">
+                            <div class="comment-body">
+                                <div class="message">{{ comment.comment }}</div>
+                                <div class="comment-footer">
+                                    <small>
+                                        Posté le {{ comment.postedAt|date('d/m/Y à H:i') }}
+                                        par {{ comment.author.username|capitalize }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Soyez le premier à laisser un commentaire</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('comment') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Listes Saisons</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('admin') }}">Accueil admin</a>
+        <a class="btn btn-sm btn-outline-light" href="{{ path('season_new') }}">Nouvelle saison</a>
+
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th>Nom de la série</th>
+                <th>Saison</th>
+                <th>Episodes</th>
+                <th>Sortie</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for season in seasons %}
+                <tr>
+                    <td>{{ season.program.title }}</td>
+                    <td>Saison {{ season.number }}</td>
+                    <td>{{ season.episodes | length }}</td>
+                    <td>{{ season.year }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('season_show', {'id': season.id}) }}">Afficher</a>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('season_edit', {'id': season.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

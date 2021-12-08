@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau programme | Admin{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Céer un nouveau rogramme</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('program_index') }}">Retour à la liste</a>
+
+        <div class="row">
+            <div class="col-md-4 image-container mb-3">
+                <img id="img" src="" alt="image non disponible">
+            </div>
+            <div class="col-md-8">
+                {{ include('admin/episode/_form.html.twig') }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

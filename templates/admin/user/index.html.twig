@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des utilisateurs</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('admin') }}">Accueil admin</a>
+        <a class="btn btn-sm btn-outline-light" href="{{ path('user_new') }}">Nouvel utilisateur</a>
+
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Droits</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('user_show', {'id': user.id}) }}">Afficher</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas de comptes trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

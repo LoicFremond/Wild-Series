@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{% block title %}Bienvenue!{% endblock %}</title>
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+</head>
+<body>
+
+<div id="main">
+    <div class="container text-center">
+        <img class="homepage"
+             src="https://www.cgrcinemas.fr/angouleme/evenement/bobine.png"
+             alt="wild séries">
+                     <a class="btn btn-lg btn-light mt-5" href="{{ path('wild_index') }}">Entrer</a>
+
+    </div>
+</div>
+
+
+
+<script src="https://kit.fontawesome.com/bfe9f51c30.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie {{ category.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Catégorie {{ category.name }}</h1>
+        <div class="row my-5">
+            {% for program in selectByCategory %}
+                <div class="col-md-3 col-lg-2 mb-4">
+                    <a href="{{ path('wild_show', { 'slug': program.slug | lower }) }}">
+                        <div class="card card-poster h-100">
+                            <img src="{{ program.poster }}" class="card-img-top" alt="{{ program.title }}">
+                        </div>
+                    </a>
+                </div>
+            {% else %}
+                <div id="wrapper">
+                    <h1 class="glitch" data-text="Not found">Not found</h1>
+                    <span class="sub">Aucune série trouvée</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

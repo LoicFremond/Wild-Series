@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Voir un acteur</h1>
+        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_index') }}">Retour à la liste</a>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <img src="{{ actor.image }}" alt="{{ actor.name }}">
+                </td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ actor.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ actor.slug }}</td>
+            </tr>
+            <tr>
+                <td>Programme</td>
+                <td>
+                    {% for program in actor.programs %}
+                        <a class="btn btn-outline-light m-1"
+                           href="{{ path('wild_show', { 'slug': program.title | replace({' ':'-'}) }) | lower }}">
+                            {{ program.title }}
+                        </a>
+                    {% else %}
+                        <p>Aucun programme trouvé</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-sm btn-success" href="{{ path('actor_edit', {'id': actor.id}) }}">Editer</a>
+
+        {{ include('admin/actor/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

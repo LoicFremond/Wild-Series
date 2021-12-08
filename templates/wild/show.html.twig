@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ program.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<a href="{{ path('wild_index') }}" class="btn btn-sm btn-outline-light mb-5">
+			Toutes les séries
+		</a>
+		<div class="media">
+			<div class="row">
+				<div class="col col-12 col-md-5">
+					<img class="image-shadow align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+				</div>
+				<div class="media-detail col col-12 col-md-7">
+					<div class="media-body">
+						<h2 class="mt-0">{{ program.title }}</h2>
+						<p>{{ program.summary }}</p>
+						<p>Categorie :
+							{{ program.category.name }}</p>
+						<p>Acteurs :
+							{% for actor in program.actors %}
+								<p class="actor-wrapper">
+									<a class="btn-custom" href="{{ path('wild_actor', {'slug': actor.slug | lower }) }}">
+										{{ actor.name }}
+									</a>
+								</p>
+							{% endfor %}
+						</p>
+						<p>Saisons :
+							{% for season in seasons %}
+								<p class="actor-wrapper">
+									<a class="btn-custom" href="{{ path('wild_show_season', { 'slug': program.slug | lower, 'id': season.id, 'number': season.number }) }}">Saison
+										{{ season.number }}</a>
+								</p>
+							{% endfor %}
+						</p>
+					</ul>
+				</p>
+			</div>
+		</div>
+	</div>
+</div></div></div>{% endblock %}

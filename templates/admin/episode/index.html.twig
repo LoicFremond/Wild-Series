@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Episodes | Admin{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des épisodes</h1>
+
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('admin') }}">Accueil Admin</a>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('episode_new') }}">Nouvel épisode</a>
+
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th>Affiche</th>
+                <th>Série</th>
+                <th>Titre</th>
+                <th>Saison</th>
+                <th>Episode</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for episode in episodes %}
+                <tr>
+                    <td>
+                    <img src="{{ episode.poster }}" alt="{{ episode.title }}">
+                    </td>
+                    <td>{{ episode.season.program.title }}</td>
+                    <td>{{ episode.title }}</td>
+                    <td>{{ episode.season.number }}</td>
+                    <td>{{ episode.number }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('episode_show', {'id': episode.id}) }}">Afficher</a>
+                        <a class="btn btn-sm btn-outline-light" href="{{ path('episode_edit', {'id': episode.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation">
+            {{ knp_pagination_render(episodes) }}
+        </div>
+    </div>
+{% endblock %}

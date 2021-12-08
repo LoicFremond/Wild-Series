@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle saison{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Nouvelle saison</h1>
+        <a class="btn btn-sm btn-outline-light my-4" href="{{ path('season_index') }}">Retour à la liste</a>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-lg-6">
+                {{ form_row(form.number) }}
+            </div>
+            <div class="col-lg-6">
+                {{ form_row(form.year) }}
+            </div>
+            <div class="col-lg-12">
+                {{ form_row(form.program) }}
+            </div>
+            <div class="col-lg-12">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+
+        {{ include('admin/season/_form.html.twig') }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
