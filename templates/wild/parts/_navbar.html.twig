@@ -37,7 +37,7 @@
 						Se déconnecter</a>
 					{% if app.user.roles[0] == 'ROLE_USER' or app.user.roles[0] == 'ROLE_SUBSCRIBER' or app.user.roles[0] == 'ROLE_ADMIN' %}
 						<a class="nav-item nav-link" href="{{ path('profile', {'username': app.user.username}) }}">
-							<i class="fas fa-user-cog mr-1"></i></i>Mon profile</a>
+							<i class="fas fa-user-cog mr-1"></i></i>Mon profil</a>
 					{% endif %}
 					{% if app.user.roles[0] == 'ROLE_ADMIN' %}
 						<a class="nav-item nav-link" href="{{ path('admin') }}">

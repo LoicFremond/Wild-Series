@@ -8,7 +8,7 @@
         <a href="{{ path('wild_show_season',
             { 'slug': program.slug | lower,
                 'id': season.id,
-                'number': season.number }) }}" class="btn btn-sm btn-outline-light mb-5">
+                'season': season.slug }) }}" class="btn btn-sm btn-outline-light mb-5">
             Liste des épisodes
         </a>
         <a href="{{ path('wild_show', { 'slug': program.slug | lower }) }}" class="btn btn-sm btn-outline-light mb-5">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="media-detail col col-12 col-md-7">
                     <div class="media-body">
-                        <h3>{{ program.title }}</h3>
+                        <h3  class="text-center">{{ program.title }}</h3>
                         <table class="table">
                             <tbody>
                             <tr>
@@ -41,10 +41,6 @@
                             <tr>
                                 <td>Sortie :</td>
                                 <td>{{ season.year }}</td>
-                            </tr>
-                            <tr>
-                                <td>Categorie :</td>
-                                <td>{{ program.category.name }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -72,11 +68,11 @@
             </div>
             <div class="comments-wrapper my-5">
                 {% for comment in comments %}
-                    <div class="comment d-flex mb-4">
+                    <div class="comment d-flex mb-5">
                         <div class="comment-image text-center">
                             <figure>
-                                <img class="image-container" src="{{ asset('images/') ~ comment.author.avatar }}"
-                                     alt="{{ comment.author.username }}">
+                                <img class="image-container" src="{{ comment.author.avatar }}"
+                                     alt="{{ comment.author.username }}" title="{{ comment.author.username }}">
                                 <figcaption class="mt-2">
                                     {{ comment.rate }}
                                     <i class="fas fa-star"></i>

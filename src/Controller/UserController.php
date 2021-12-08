@@ -98,7 +98,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, string $username): Response
     {
         if ($this->getUser()->getUsername() !== $username) {
-            $this->flash->createFlash('denied');
+            $this->flash->createFlash('Denied');
             return $this->redirectToRoute('wild_index');
         }
 
@@ -126,7 +126,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('Delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();

@@ -46,6 +46,7 @@ class ProgramType extends AbstractType
             ])
             ->add('slug', TextType::class, [
                 'required' => false,
+                'disabled' => 'disabled'
             ])
         ;
     }

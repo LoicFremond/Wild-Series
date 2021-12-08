@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Program;
+use App\Form\ProgramSearchType;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Flash;
@@ -34,24 +35,58 @@ class ProgramController extends AbstractController
         $this->category = $category->getCategory();
         $this->flash = $flash;
     }
+ 
 
-    /**
-     * @Route("/", name="program_index", methods={"GET"})
+   /**
+     * Show all rows from Program’s entity
+     *
+     * @Route("/", name="program_index")
      * @param ProgramRepository  $programRepository
      * @param PaginatorInterface $paginator
      * @param Request            $request
-     * @return Response
+     * @return Response A response instance
      */
-    public function index(ProgramRepository $programRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(
+        ProgramRepository $programRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
-        return $this->render('admin/program/index.html.twig', [
-            'programs' => $paginator->paginate(
-                $programRepository->findAll(),
+        $isSearch = false;
+        $programs = $paginator->paginate(
+            $programRepository->findAllPrograms(),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        if (!$programs) {
+            throw $this->createNotFoundException(
+                'Aucune série trouvée.'
+            );
+        }
+
+        $form = $this->createForm(ProgramSearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() and $form->isValid()) {
+            $data = $form->getData();
+            $programs = $paginator->paginate(
+                $programRepository->search(mb_strtolower($data['searchField'])),
                 $request->query->getInt('page', 1),
                 10
-            ),
-            'categories' => $this->category,
-        ]);
+            );
+            $isSearch = true;
+        }
+
+        return $this->render(
+            'admin/program/index.html.twig',
+            [
+                'programs' => $programs,
+                'form' => $form->createView(),
+                'categories' => $this->category,
+                'search' => $isSearch,
+            ]
+        );
     }
 
     /**
@@ -69,7 +104,6 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->flash->createFlash('create');
             $entityManager = $this->getDoctrine()->getManager();
             $program->setSlug($slugify->generate($program->getTitle()));
             $entityManager->persist($program);
@@ -84,6 +118,8 @@ class ProgramController extends AbstractController
                 ]), 'utf-8');
 
             $mailer->send($email);
+
+            $this->flash->createFlash('Create');
 
             return $this->redirectToRoute('program_index');
         }
@@ -121,7 +157,7 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('modify', 'Modification enregistrée');
+            $this->addFlash('Update', 'Modification enregistrée');
 
             $entityManager = $this->getDoctrine()->getManager();
             $program->setSlug($slugify->generate($program->getTitle()));
@@ -147,7 +183,7 @@ class ProgramController extends AbstractController
     public function delete(Request $request, Program $program): Response
     {
         if ($this->isCsrfTokenValid('delete'.$program->getId(), $request->request->get('_token'))) {
-            $this->addFlash('delete', 'Le programme a été supprimé');
+            $this->addFlash('Delete', 'Le programme a été supprimé');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($program);
             $entityManager->flush();

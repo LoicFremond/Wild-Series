@@ -8,10 +8,10 @@
             Retour
         </a>
         <div class="media">
-            <img class="image-shadow align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <img class="image-shadow align-self-start mr-5" src="{{ program.poster }}" alt="{{ program.title }} poster">
             <div class="media-detail">
                 <div class="media-body">
-                    <h2 class="mt-0">{{ program.title }}</h2>
+                    <h2 class="mt-2 text-center">{{ program.title }}</h2>
                     <p>{{ program.summary }}</p>
                     <table class="table">
                         <tbody>
@@ -53,7 +53,7 @@
         </div>
         <div class="list-episodes mt-5">
             {% for episode in episodes %}
-                <div class="card mb-3 actor-card">
+                <div class="card mb-3 episode-card">
                     <div class="row no-gutters">
                         <div class="col-md-3 col-lg-2">
                             <img src="{{ episode.poster ?? asset('build/images/movie.408ea2dd.png') }}"

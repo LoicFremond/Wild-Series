@@ -54,7 +54,7 @@ class EpisodeController extends AbstractController
             'episodes' => $paginator->paginate(
                 $episodeRepository->findAll(),
                 $request->query->getInt('page', 1),
-                10
+                20
             ),
             'programs' => $programRepository->findAll(),
             'categories' => $this->category,
@@ -81,7 +81,7 @@ class EpisodeController extends AbstractController
             $entityManager->persist($episode);
             $entityManager->flush();
 
-            $this->flash->createFlash('create');
+            $this->flash->createFlash('Create');
 
             return $this->redirectToRoute('episode_index');
         }
@@ -126,7 +126,7 @@ class EpisodeController extends AbstractController
             $entityManager->persist($episode);
             $entityManager->flush();
 
-            $this->flash->createFlash('update');
+            $this->flash->createFlash('Update');
 
             return $this->redirectToRoute('episode_index');
         }
@@ -146,7 +146,7 @@ class EpisodeController extends AbstractController
      */
     public function delete(Request $request, Episode $episode): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$episode->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('Delete'.$episode->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();

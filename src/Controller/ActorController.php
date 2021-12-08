@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Actor;
+use App\Form\ActorSearchType;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
+use App\Repository\CategoryRepository;
 use App\Service\GetCategory;
 use App\Service\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,22 +28,50 @@ class ActorController extends AbstractController
         $this->category = $category->getCategory();
     }
 
-    /**
-     * @Route("/", name="actor_index", methods={"GET"})
+   /**
+     * @Route("/", name="actor_index")
      * @param ActorRepository    $actorRepository
+     * @param CategoryRepository $categoryRepository
      * @param PaginatorInterface $paginator
      * @param Request            $request
      * @return Response
      */
-    public function index(ActorRepository $actorRepository, PaginatorInterface $paginator, Request $request): Response
+    public function showAllActor(
+        ActorRepository $actorRepository,
+        CategoryRepository $categoryRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
-        return $this->render('admin/actor/index.html.twig', [
-            'actors' => $paginator->paginate(
-                $actorRepository->findAll(),
+        $actors = $paginator->paginate(
+            $actorRepository->findAllActors(),
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        if (!$actors) {
+            throw $this->createNotFoundException(
+                'Aucun acteur trouvé.'
+            );
+        }
+        $isSearchA = false;
+        $formA = $this->createForm(ActorSearchType::class);
+        $formA->handleRequest($request);
+    
+        if ($formA->isSubmitted() and $formA->isValid()) {
+            $data = $formA->getData();
+            $actors = $paginator->paginate(
+                $actorRepository->searchA(mb_strtolower($data['searchField'])),
                 $request->query->getInt('page', 1),
-                15
-            ),
+                12
+            );
+            $isSearchA = true;
+        }
+        return $this->render('admin/actor/index.html.twig', [
+            'formA' => $formA->createView(),
+            'actors' => $actors,
             'categories' => $this->category,
+            'search' => $isSearchA,
         ]);
     }
 

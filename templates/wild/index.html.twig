@@ -7,22 +7,22 @@
         <h1>Listes des séries</h1>
 
         {{ form_start(form) }}
-        <div class="row mt-3">
-            <div class="col-md-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4">
                 {{ form_row(form.searchField) }}
             </div>
             <div class="btn-group d-inline-block" role="group">
                 <button class="btn btn-sm btn-outline-light" type="submit" name="btnSearch">Rechercher</button>
                 {% if search == true %}
-                    <a href="{{ path('wild_index') }}" class="btn btn-sm btn-dark">Afficher tout</a>
+                    <a href="{{ path('wild_index') }}" class="btn btn-sm btn-outline-light">Afficher tout</a>
                 {% endif %}
             </div>
         </div>
         {{ form_end(form) }}
 
-        <div class="row my-5">
+        <div class="row my-8">
             {% for program in programs %}
-                <div class="col-6 col-md-3 col-lg-2 mb-4">
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <a href="{{ path('wild_show', { 'slug': program.slug | lower }) }}">
                         <div class="card card-poster h-100">
                             <div class="image">

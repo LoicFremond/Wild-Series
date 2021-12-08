@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Actor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,30 @@ class ActorRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Actor::class);
+    }
+
+     /**
+     * @return Query
+     */
+    public function findAllActors(): Query
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.name', 'ASC')
+            ->getQuery();
+    }
+
+
+        /**
+     * @param string $term
+     * @return Query
+     */
+    public function SearchA(string $term): Query
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.name LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $term . '%')
+            ->orderBy('s.id', 'DESC')
+            ->getQuery();
     }
 
     // /**

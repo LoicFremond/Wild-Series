@@ -4,10 +4,23 @@
 {% block body %}
     <div class="container">
         <h1>Les acteurs</h1>
+                {{ form_start(formA) }}
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4">
+                {{ form_row(formA.searchField) }}
+            </div>
+            <div class="btn-group d-inline-block" role="group">
+                <button class="btn btn-sm btn-outline-light" type="submit" name="btnSearch">Rechercher</button>
+                {% if search == true %}
+                    <a href="{{ path('wild_all_actors') }}" class="btn btn-sm btn-outline-light">Afficher tout</a>
+                {% endif %}
+            </div>
+        </div>
+        {{ form_end(formA) }}
         
         <div class="row my-5">
             {% for actor in actors %}
-                <div class="col-6 col-md-4 col-lg-2 mb-4 actor-card">
+                <div class="col-8 col-md-4 col-lg-2 mb-4 actor-card">
                     <a href="{{ path('wild_actor',
                         {'slug': actor.slug | lower,
                         }) }}">
@@ -24,7 +37,7 @@
                     </a>
                 </div>
             {% else %}
-                Aucune série trouvée.
+                Aucun acteur trouvé.
             {% endfor %}
         </div>
         <div class="navigation">

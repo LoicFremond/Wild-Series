@@ -26,7 +26,7 @@ class ProgramRepository extends ServiceEntityRepository
     public function findAllPrograms(): Query
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
+            ->orderBy('p.title', 'ASC')
             ->getQuery();
     }
 

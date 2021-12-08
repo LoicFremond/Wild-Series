@@ -14,6 +14,7 @@ use DateTime;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ProgramSearchType;
+use App\Form\ActorSearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\EpisodeRepository;
@@ -71,7 +72,7 @@ class WildController extends AbstractController
             $programs = $paginator->paginate(
                 $programRepository->search(mb_strtolower($data['searchField'])),
                 $request->query->getInt('page', 1),
-                10
+                8
             );
             $isSearch = true;
         }
@@ -164,7 +165,7 @@ class WildController extends AbstractController
     }
 
     /**
-     * @Route("/series/{slug<[a-zA-Z-]+[0-9]*>}/{id<[0-9]+>}/season/{number<[0-9]+>}", name="wild_show_season")
+     * @Route("/series/{slug<[a-zA-Z-]+[0-9]*>}/{id<[0-9]+>}/{season<[a-zA-Z-]+[0-9]*>}", name="wild_show_season")
      * @param int                $id
      * @param SeasonRepository   $seasonRepository
      * @param Request            $request
@@ -234,7 +235,7 @@ class WildController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
-            $flash->createFlash('create');
+            $flash->createFlash('Create');
 
             return $this->redirectToRoute('wild_show_episode', [
                 'slug' => $episode->getSeason()->getProgram()->getSlug(),
@@ -287,13 +288,37 @@ class WildController extends AbstractController
         Request $request
     ): Response
     {
-        return $this->render('wild/showAllActors.html.twig', [
-            'actors' => $paginator->paginate(
-                $actorRepository->findAll(),
+        $actors = $paginator->paginate(
+            $actorRepository->findAllActors(),
+            $request->query->getInt('page', 1),
+            12
+        );
+
+        if (!$actors) {
+            throw $this->createNotFoundException(
+                'Aucun acteur trouvé.'
+            );
+        }
+        $isSearchA = false;
+        $formA = $this->createForm(ActorSearchType::class);
+        $formA->handleRequest($request);
+    
+        if ($formA->isSubmitted() and $formA->isValid()) {
+            $data = $formA->getData();
+            $actors = $paginator->paginate(
+                $actorRepository->searchA(mb_strtolower($data['searchField'])),
                 $request->query->getInt('page', 1),
                 12
-            ),
+            );
+            $isSearchA = true;
+        }
+        return $this->render('wild/showAllActors.html.twig', [
+            'formA' => $formA->createView(),
+            'actors' => $actors,
+            
             'categories' => $this->categories,
+            'search' => $isSearchA,
         ]);
     }
+
 }

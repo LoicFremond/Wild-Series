@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon profile
+{% block title %}Mon profil
 {% endblock %}
 
 {% block body %}
 	<div class="container">
 
-		<h1>Mon profile</h1>
+		<h1>Mon profil</h1>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="col-md-12 image-container mb-3">
@@ -15,7 +15,6 @@
 			</div>
 			<div class="col-md-8">
 				{{ form_start(form) }}
-				<div class="row"></div>
 				<div class="row">
 					<div class="col-md-6">{{ form_row(form.username) }}</div>
 					<div class="col-md-6">{{ form_row(form.email) }}</div>

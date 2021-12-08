@@ -32,6 +32,10 @@ class SeasonType extends AbstractType
                 'multiple' => false,
                 'label' => 'Programme'
             ])
+            ->add('slug', TextType::class, [
+                'required' => false,
+                'disabled' => 'disabled'
+            ])
         ;
     }
 
