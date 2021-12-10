@@ -25,7 +25,9 @@
             <tr>
                 <th>Portrait</th>
                 <th>Nom</th>
-                <th>Actions</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -36,9 +38,14 @@
                     </td>
                     <td>{{ actor.name }}</td>
                     <td>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_show', {'id': actor.id}) }}">Afficher</a>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('actor_edit', {'id': actor.id}) }}">Editer</a>
-                    </td>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('actor_show', {'id': actor.id}) }}">Afficher</a>
+                        </td>
+                        <td>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('actor_edit', {'id': actor.id}) }}">Editer</a>
+                        </td>
+
+                        <td>
+                    {{ include('admin/actor/_delete_form.html.twig') }}
                 </tr>
             {% else %}
                 <tr>

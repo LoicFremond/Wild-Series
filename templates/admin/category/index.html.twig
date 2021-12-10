@@ -13,7 +13,8 @@
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>Actions</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
             </tr>
             </thead>
             <tbody>
@@ -22,6 +23,8 @@
                     <td>{{ category.name }}</td>
                     <td>
                         <a class="btn btn-sm btn-outline-light" href="{{ path('category_show', {'id': category.id}) }}">Afficher</a>
+                    </td>
+                    <td>
                         <a class="btn btn-sm btn-outline-light" href="{{ path('category_edit', {'id': category.id}) }}">Editer</a>
                     </td>
                 </tr>

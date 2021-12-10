@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des programmes | Admin{% endblock %}
+{% block title %}Liste des séries | Admin{% endblock %}
 
 {% block body %}
     <div class="container mb-5">
-        <h1>Liste des programmes</h1>
+        <h1>Liste des séries</h1>
         <a class="btn btn-sm btn-outline-light my-4" href="{{ path('admin') }}">Accueil admin</a>
         <a class="btn btn-sm btn-outline-light my-4" href="{{ path('program_new') }}">Nouveau programme</a>
                 {{ form_start(form) }}
@@ -26,7 +26,9 @@
                 <th>Affiche</th>
                 <th>Titre</th>
                 <th>Catégorie</th>
-                <th>Actions</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -45,8 +47,15 @@
                         {{ program.category.name }}
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('program_show', {'id': program.id}) }}">Afficher</a>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('program_edit', {'id': program.id}) }}">Editer</a>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('program_show', {'id': program.id}) }}">Afficher</a>
+                        </td>
+                        <td>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('program_edit', {'id': program.id}) }}">Editer</a>
+                        </td>
+
+                        <td>
+                    {{ include('admin/program/_delete_form.html.twig') }}
+
                     </td>
                 </tr>
             {% else %}

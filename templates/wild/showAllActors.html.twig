@@ -24,13 +24,13 @@
                     <a href="{{ path('wild_actor',
                         {'slug': actor.slug | lower,
                         }) }}">
-                        <div class="card card-actor h-100">
+                        <div class="card card-actor w-100 h-100">
                             <img src="{{ actor.image ?? asset('build/images/actor.6ddea756.png') }}"
-                                 class=" {{ actor.image ? "" : "card-img-actor-default" }}"
-                                 alt="{{ actor.name }}">
+                                 class="actor.img {{ actor.image ? "" : "card-img-actor-default" }} h-80"
+                                 alt="{{ actor.name }}" >
                             <div class="card-body">
                                 <p class="card-text text-center">
-                                    <small class="text-muted">{{ actor.name }}</small>
+                                    <small class="text">{{ actor.name }}</small>
                                 </p>
                             </div>
                         </div>

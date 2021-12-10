@@ -20,7 +20,7 @@
         </div>
         {{ form_end(form) }}
 
-        <div class="row my-8">
+        <div class="row my-2">
             {% for program in programs %}
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <a href="{{ path('wild_show', { 'slug': program.slug | lower }) }}">

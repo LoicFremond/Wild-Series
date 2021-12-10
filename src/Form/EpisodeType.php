@@ -19,10 +19,9 @@ class EpisodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Titre'])
+            ->add('title', TextType::class, ['label' => 'Titre',])
             ->add('number', NumberType::class, ['label' => 'Episode'])
             ->add('synopsis', TextareaType::class)
-            ->add('slug', TextType::class, ['required' => false])
             ->add('poster', TextType::class,
                 [
                     'label' => 'Affiche',
@@ -34,6 +33,11 @@ class EpisodeType extends AbstractType
                 'multiple' => false,
                 'label' => 'Saison',
             ])
+            ->add('slug', TextType::class, [
+                'required' => false,
+                'disabled' => 'disabled',
+                ])
+
         ;
     }
 

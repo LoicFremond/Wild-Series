@@ -139,6 +139,7 @@ img {
   }
 }
 
+
 .content-comment {
   color: $dark;
 }
@@ -304,7 +305,7 @@ h1 {
     display: inline-block;
 
     .card-img-actor {
-      height    : 80%;
+      height    : 100%;
       object-fit: cover;
     }
   }

@@ -16,9 +16,9 @@
 				<div class="media-detail col col-12 col-md-7">
 					<div class="media-body">
 						<h2 class="mt-0 text-center">{{ program.title }}</h2>
-						<p>{{ program.summary }}</p>
 						<p class="text-center">Categorie :
 							{{ program.category.name }}</p>
+						<p>{{ program.summary }}</p>
 						<p>Acteurs :
 							{% for actor in program.actors %}
 								<p class="actor-wrapper">

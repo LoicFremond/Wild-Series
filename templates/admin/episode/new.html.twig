@@ -12,6 +12,7 @@
                 <img id="img" src="" alt="image non disponible">
             </div>
             <div class="col-md-8">
+                {{ form_row(form.slug, { 'attr': {'class': 'hide'} }) }}
                 {{ include('admin/episode/_form.html.twig') }}
             </div>
         </div>

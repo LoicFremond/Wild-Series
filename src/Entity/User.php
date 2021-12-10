@@ -62,6 +62,11 @@ class User implements UserInterface
      */
     private $comments;
     
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
 
     public function __construct()
     {
@@ -209,6 +214,18 @@ class User implements UserInterface
                 $comment->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

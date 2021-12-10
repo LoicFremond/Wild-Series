@@ -15,7 +15,9 @@
                 <th>Saison</th>
                 <th>Episodes</th>
                 <th>Sortie</th>
-                <th>Actions</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -26,9 +28,14 @@
                     <td>{{ season.episodes | length }}</td>
                     <td>{{ season.year }}</td>
                     <td>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('season_show', {'id': season.id}) }}">Afficher</a>
-                        <a class="btn btn-sm btn-outline-light" href="{{ path('season_edit', {'id': season.id}) }}">Editer</a>
-                    </td>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('season_show', {'id': season.id}) }}">Afficher</a>
+                        </td>
+                        <td>
+                        <a class="btn btn-sm btn-outline-light my-3" href="{{ path('season_edit', {'id': season.id}) }}">Editer</a>
+                        </td>
+
+                        <td>
+                    {{ include('admin/season/_delete_form.html.twig') }}
                 </tr>
             {% else %}
                 <tr>

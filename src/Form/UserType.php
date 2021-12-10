@@ -37,11 +37,16 @@ class UserType extends AbstractType
                 'label' => 'Membre depuis le',
                 'attr' => [
                     'required' => false,
-                    'disabled' => 'disabled'
+                    'disabled' => 'disabled',
                 ]
             ])
             ->add('username', TextType::class, [
                 'label' => 'Pseudonyme',
+            ])
+            ->add('slug', TextType::class, [
+                'required' => false,
+                'empty_data' => 'user',
+                'disabled' => 'disabled',
             ])
 
         ;
