@@ -1,0 +1,22 @@
+@media screen and (max-width: 730px) {
+  .media-body table td:first-child {
+    min-width: 70px;
+  }
+  .media {
+    flex-direction: column;
+  }
+  .row .sidebar {
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .resp-hidden {
+     display: none;
+   }
+  .resp-show {
+    display: block;
+    font-weight: bold;
+  }
+  table td {
+    display: block;
+  }
+}

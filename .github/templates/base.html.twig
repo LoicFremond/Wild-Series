@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{% block title %}Bienvenue!{% endblock %}</title>
+            <link rel="icon" type="image/png" href="{{ asset('build/images/logo.png') }}" />
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+</head>
+<body>
+{% include 'wild/parts/_navbar.html.twig' %}
+{% include 'wild/parts/_flash.html.twig' %}
+<div id="main">
+    <div class="container-fluid my-5">
+        {% block body %}{% endblock %}
+    </div>
+</div>
+
+{% include 'wild/parts/_footer.html.twig' %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+<script src="https://kit.fontawesome.com/bfe9f51c30.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+</body>
+</html>

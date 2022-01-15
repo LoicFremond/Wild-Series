@@ -1,0 +1,47 @@
+Welcome !: Bienvenue !
+Login: 'Se connecter'
+Register: 'Créer un compte'
+Logout: 'Se deconnecter'
+Actors: Acteurs
+'All actors': 'Tous les acteurs'
+Actor: Acteur
+Categories: Catégories
+Category: Categorie
+'TV Shows': Séries
+'All TV Shows': 'Toutes les séries'
+'TV Show': Série
+Home: Accueil
+Admin: Administration
+'My Profile': 'Mon Profil'
+Horror: Horreur
+Peplum: Historique
+Comedy: Comédie
+Seasons: Saisons
+Season: Saison
+Name: Nom
+'No TV Shows found': 'Aucun programme trouvé'
+Release: Sortie
+About: Detail
+Password: 'Mot de passe'
+'You are login at': 'Vous êtes connecté sur'
+Users: Utilisateurs
+User: Utilisateur
+Add, edit, manage: 'Ajouter, modifer, gérer'
+Dashboard management: Dashboard d'administration
+Back : Retour
+Add : Ajouter
+Edit: Modifer
+Delete: Supprimer
+Update: Mettre à jour
+Enter: Entrer
+Search: Rechercher
+Show all: Afficher tout
+Site created while learning Symfony:  Site réalisé lors de l'apprentissage de Symfony 
+No actors found. : Aucun acteur trouvé.
+Submit: Envoyer
+Comments: Commentaires
+Comment: Commentaire
+Be the first to post a comment: Soyez le premier à laisser un commentaire
+Posted on: Posté le
+By: Par
+You must be logged in to post a comment: Vous devez être connecter pour laisser un commentaire

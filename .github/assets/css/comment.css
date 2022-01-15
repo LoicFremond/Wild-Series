@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@0,400;0,900;1,400&display=swap");
+.comment {
+  width: 100%; }
+  .comment .comment-content {
+    width: 100%;
+    position: relative; }
+  .comment .comment-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #424145;
+    margin-right: 0.5rem; }
+  .comment .comment-body {
+    background-color: #212529;
+    color: rgba(245, 245, 245, 0.69);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    margin-left: 1rem;
+    border-radius: 3px; }
+    .comment .comment-body:before {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      top: 25px;
+      border-top: 12px solid transparent;
+      border-right: 18px solid #212529;
+      border-bottom: 12px solid transparent; }
+  .comment .comment-footer {
+    font-style: italic;
+    text-align: right;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px inset rgba(245, 245, 245, 0.69); }
+
+/*# sourceMappingURL=comment.css.map */
